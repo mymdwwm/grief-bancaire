@@ -9,6 +9,7 @@ class Client{
     public function __construct()
     {
         $this->pdo = getConnexion();
+        // = $pdo
     }
 
     public function getAllClients()
@@ -63,6 +64,12 @@ class Client{
         $stmt->bindParam(':id', $id);
         
         return $stmt->execute();
+    }
+
+    public function clientExists(string $email_client): bool {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM client WHERE email = ?");
+        $stmt->execute([$email_client]);
+        return $stmt->fetchColumn() > 0;
     }
 
 }
