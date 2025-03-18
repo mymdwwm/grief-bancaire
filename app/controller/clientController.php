@@ -2,22 +2,56 @@
 
 require_once __DIR__ . "models/Client.php";
 
-class ClientController {
+class clientController 
+{
     private $clientModel;
+
     public function __construct() {
         $this->clientModel = new Client();
     }
-    public function listClients() {
+
+    public function newClient() 
+    {
+        require_once __DIR__ . '/../views/nvx-client.php';
+    }
+
+
+    public function listClient() {
         $clients = $this->clientModel->getAllClients();
         require_once __DIR__ . "views/liste_client.php";
         // include "views/list_clients.php";
+    }
+
+    public function viewClient($id) 
+    {
+        $task = $this->clientModel->getClient($id);
+        require_once __DIR__ . '/../views/view-client.php';
+    }
+
+    public function modifyClient($id) 
+    {
+        $task = $this->clientModel->getClient($id);
+        require_once __DIR__ . '/../views/modif-client.php';
+    }
+
+    public function deleteClient($id) 
+    {
+        $this->clientModel->deleteClient($id);
+        header('Location: index.php');
+    }
+
+
+    public function updateClient(string $id, string $titre, string $description, string $status) 
+    {
+        $this->clientModel->updateClient($id, $titre, $description, $status);
+        header('Location: index.php');
     }
 
 
 
     // necessaire ???
     public function addClientForm() {
-        include "views/add_client.php";
+        include "views/nvx-client.php";
     }
 
 

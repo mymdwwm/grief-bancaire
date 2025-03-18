@@ -2,7 +2,7 @@
 
 <div id="card">
     <h2>Ajoutez un nouveau client</h2>
-    <form action="?action=create" method="POST">
+    <form action="?action=index.php?action=nvx-client" method="POST">
         <div class="">
             <label for="nom" class="form-label">Nom :</label>
             <input type="text" class="form-control" id="title" name="title" required>

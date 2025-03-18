@@ -4,7 +4,7 @@
 <?php if (!empty($clients)):  ?>
     <div>
     <h2>Liste des clients</h2>
-
+    <a href="index.php?action=add_client_form">Ajouter un client</a>
     <table>
         <thead>
             <tr>
@@ -24,10 +24,11 @@
                     <td><?= htmlspecialchars($client['telephone']) ?></td>
                     <td><?= htmlspecialchars($client['adresse']) ?></td>
                     <td>
-                        <a href="?id=<?= $client['id'] ?>&action=voir" class="btn btn-info btn-sm">Voir</a>
-                        <a href="?id=<?= $client['id'] ?>&action=modifier" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="?id=<?= $client['id'] ?>&action=create" class="">Voir</a>
+                        <a href="?id=<?= $client['id'] ?>&action=voir" class="">Voir</a>
+                        <a href="?id=<?= $client['id'] ?>&action=modifier" class="">Modifier</a>
                         <a href="?id=<?= $client['id'] ?>&action=supprimer" 
-                           class="btn btn-danger btn-sm"
+                           class=""
                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?')">
                             Supprimer
                         </a>

@@ -37,7 +37,7 @@ class Client{
         return $stmt->fetch();
     }
 
-    public function create(string $nom, string $prenom, string $email_client, string $telephone, string $adresse)
+    public function addClient(string $nom, string $prenom, string $email_client, string $telephone, string $adresse)
     {
         $stmt = $this->pdo->prepare("INSERT INTO tasks (nom, prenom, email_client, telephone, adresse) VALUES (:nom, :prenom, :email_client, :telephone, :adresse);");
 
