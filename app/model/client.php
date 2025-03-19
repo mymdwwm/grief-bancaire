@@ -25,7 +25,7 @@ class Client{
         $sqlDelete = "DELETE FROM client WHERE id=:id";
         $stmt = $this->pdo->prepare($sqlDelete);
         $stmt->bindParam(':id', $id);
-        $stmt->execute();
+        return $stmt->execute();
     }
 
     public function getClient($id) 
@@ -38,8 +38,10 @@ class Client{
     }
 
     public function addClient(string $nom, string $prenom, string $email_client, string $telephone, string $adresse)
-    {
-        $stmt = $this->pdo->prepare("INSERT INTO tasks (nom, prenom, email_client, telephone, adresse) VALUES (:nom, :prenom, :email_client, :telephone, :adresse);");
+    {          
+        
+        // couleur de l'insert ????
+        $stmt = $this->pdo->prepare("INSERT INTO client (nom, prenom, email_client, telephone, adresse) VALUES (:nom, :prenom, :email_client, :telephone, :adresse);");
 
         $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':prenom', $prenom);
@@ -52,7 +54,9 @@ class Client{
 
 
     public function update(string $id, string $nom, string $prenom, string $email_client, string $telephone, string $adresse) 
-    {
+    {           
+        
+        // couleur de l'update ????
         $stmt = $this->pdo->prepare("UPDATE client 
                     SET nom = :nom, prenom = :prenom, email_client = :email_client, telephone = :telephone, adresse = :adresse 
                     WHERE id=:id;");
@@ -67,7 +71,7 @@ class Client{
     }
 
     public function clientExists(string $email_client): bool {
-        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM client WHERE email = ?");
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM client WHERE email_client = ?");
         $stmt->execute([$email_client]);
         return $stmt->fetchColumn() > 0;
     }

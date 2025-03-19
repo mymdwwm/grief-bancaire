@@ -3,16 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interface Améliorée</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Gestion des tâches</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><h1>Gestionnaire Bancaire</h1></li>
-                <li><a href="#">Accueil</a></li>
-                
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="?">Gestionnaire bancaire</a>
+            <div class="" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="?">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=new-task">➕ Nouvelle Tâche</a>
+                    </li>
+                    <li class="nav-item">
+                        <?php if(isset($_SESSION['username'])): ?>
+                            <a class="nav-link" href="?action=disconnect">🔐 Déconnexion</a>
+                        <?php else: ?>
+                            <a class="nav-link" href="?page=login">Connexion</a>
+                        <?php endif; ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <?php if(isset($_SESSION['username'])): ?>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container">
+                <span class="navbar-text">
+                    Vous naviguez en tant que: <?= $_SESSION['username'] ?>
+                </span>
+            </div>
         </nav>
-    </header>
+    <?php endif; ?>

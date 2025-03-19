@@ -1,6 +1,6 @@
 <?
 
-require_once __DIR__ . "models/Client.php";
+require_once __DIR__ . "/../model/Client.php";
 
 class clientController 
 {
@@ -18,7 +18,7 @@ class clientController
 
     public function listClient() {
         $clients = $this->clientModel->getAllClients();
-        require_once __DIR__ . "views/liste_client.php";
+        require_once __DIR__ . "/../views/liste_client.php";
         // include "views/list_clients.php";
     }
 
@@ -38,15 +38,16 @@ class clientController
     {
         $this->clientModel->deleteClient($id);
         header('Location: index.php');
+        exit;
     }
 
 
-    public function updateClient(string $id, string $titre, string $description, string $status) 
+    public function updateClient( $id, string $nom, string $prenom, string $email_client, string $telephone, string $adresse) 
     {
-        $this->clientModel->updateClient($id, $titre, $description, $status);
-        header('Location: index.php');
+        $this->clientModel->update($id, $nom, $prenom, $email_client, $telephone, $adresse);
+        header('Location: index.php?action=list_clients');
+        exit;
     }
-
 
 
     // necessaire ???
@@ -56,12 +57,10 @@ class clientController
 
 
 
-
-
     public function addClient(string $nom, string $prenom, string $email_client, string $telephone, string $adresse)
 {
     // Vérifiez si le client existe déjà (par exemple, par email)
-    if (!$this->clientExists($email_client)) {
+    if (!$this->clientModel->clientExists($email_client)) {
         $this->clientModel->addClient($nom, $prenom, $email_client, $telephone, $adresse);
         header('Location: /index.php?action=list_clients');
     } else {

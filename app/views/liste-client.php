@@ -2,11 +2,11 @@
 
 
 <?php if (!empty($clients)):  ?>
-    <div>
-    <h2>Liste des clients</h2>
+    <div class="container mt-5">
+    <h2 class="mb-4">Liste des clients</h2>
     <a href="index.php?action=add_client_form">Ajouter un client</a>
-    <table>
-        <thead>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
             <tr>
                 <th>Nom</th>
                 <th>Prenom</th>
@@ -18,13 +18,12 @@
         <tbody>
             <?php foreach ($clients as $client): ?>
                 <tr>
-                    <td><?= htmlspecialchars(string: $client['nom']) ?></td>
+                    <td><?= htmlspecialchars( $client['nom']) ?></td>
                     <td><?= htmlspecialchars($client['prenom']) ?></td>
                     <td><?= htmlspecialchars($client['email']) ?></td>
                     <td><?= htmlspecialchars($client['telephone']) ?></td>
                     <td><?= htmlspecialchars($client['adresse']) ?></td>
                     <td>
-                        <a href="?id=<?= $client['id'] ?>&action=create" class="">Voir</a>
                         <a href="?id=<?= $client['id'] ?>&action=voir" class="">Voir</a>
                         <a href="?id=<?= $client['id'] ?>&action=modifier" class="">Modifier</a>
                         <a href="?id=<?= $client['id'] ?>&action=supprimer" 
