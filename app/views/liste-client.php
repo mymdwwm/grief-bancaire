@@ -2,9 +2,9 @@
 
 
 <?php if (!empty($clients)):  ?>
-    <div class="container mt-5">
+    <div class="container mt-6">
     <h2 class="mb-4">Liste des clients</h2>
-    <a href="index.php?action=add_client_form">Ajouter un client</a>
+    <a href="index.php?action=create">Ajouter un client</a>
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
@@ -13,14 +13,16 @@
                 <th>Email</th>
                 <th>Telephone</th>
                 <th>Adresse</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($clients as $client): ?>
                 <tr>
+                    
                     <td><?= htmlspecialchars( $client['nom']) ?></td>
                     <td><?= htmlspecialchars($client['prenom']) ?></td>
-                    <td><?= htmlspecialchars($client['email']) ?></td>
+                    <td><?= htmlspecialchars($client['email_client']) ?></td>
                     <td><?= htmlspecialchars($client['telephone']) ?></td>
                     <td><?= htmlspecialchars($client['adresse']) ?></td>
                     <td>

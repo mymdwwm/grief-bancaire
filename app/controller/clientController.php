@@ -1,83 +1,67 @@
-<?
+<?php
 
-require_once __DIR__ . "/../model/Client.php";
-
-class clientController 
+class ClientController
 {
     private $clientModel;
 
     public function __construct() {
+        require_once __DIR__ . "/../model/client.php";
         $this->clientModel = new Client();
     }
 
-    public function newClient() 
+    public function newClient()
     {
         require_once __DIR__ . '/../views/nvx-client.php';
     }
 
-
     public function listClient() {
         $clients = $this->clientModel->getAllClients();
-        require_once __DIR__ . "/../views/liste_client.php";
-        // include "views/list_clients.php";
+        require_once __DIR__ . "/../views/liste-client.php";
     }
 
-    public function viewClient($id) 
+    public function viewClient($id)
     {
-        $task = $this->clientModel->getClient($id);
+        $client = $this->clientModel->getClient($id);
         require_once __DIR__ . '/../views/view-client.php';
     }
 
-    public function modifyClient($id) 
+    public function modifyClient($id)
     {
-        $task = $this->clientModel->getClient($id);
+        $client = $this->clientModel->getClient($id);
         require_once __DIR__ . '/../views/modif-client.php';
     }
 
-    public function deleteClient($id) 
+    public function deleteClient($id)
     {
         $this->clientModel->deleteClient($id);
         header('Location: index.php');
         exit;
     }
 
-
-    public function updateClient( $id, string $nom, string $prenom, string $email_client, string $telephone, string $adresse) 
+    public function updateClient($id, string $nom, string $prenom, string $email_client, string $telephone, string $adresse)
     {
         $this->clientModel->update($id, $nom, $prenom, $email_client, $telephone, $adresse);
-        header('Location: index.php?action=list_clients');
+        header('Location: index.php?action=liste-client');
         exit;
     }
 
-
-    // necessaire ???
     public function addClientForm() {
-        include "views/nvx-client.php";
+        include __DIR__ . "/../views/nvx-client.php";
     }
-
-
 
     public function addClient(string $nom, string $prenom, string $email_client, string $telephone, string $adresse)
-{
-    // Vérifiez si le client existe déjà (par exemple, par email)
-    if (!$this->clientModel->clientExists($email_client)) {
-        $this->clientModel->addClient($nom, $prenom, $email_client, $telephone, $adresse);
-        header('Location: /index.php?action=list_clients');
-    } else {
-        // Gérer le cas où le client existe déjà
-        echo "Le client existe déjà.";
+    {
+        if (!$this->clientModel->clientExists($email_client)) {
+            $this->clientModel->addClient($nom, $prenom, $email_client, $telephone, $adresse);
+            header('Location: /index.php?action=liste-client');
+        } else {
+            echo "Le client existe déjà.";
+        }
+    }
+
+    private function clientExists(string $email_client): bool
+    {
+        return $this->clientModel->clientExists($email_client);
     }
 }
-
-private function clientExists(string $email_client): bool
-{
-    // Implémentez la logique pour vérifier si un client avec cet email existe déjà
-    // Par exemple, en utilisant une requête à la base de données
-    // Retourne true si le client existe, false sinon
-    return $this->clientModel->clientExists($email_client);
-}
-
-
-
-
-}
+?>
