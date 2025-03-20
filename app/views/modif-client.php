@@ -3,9 +3,9 @@
 
 <div class="container mt-5">
         <h2>Modifier le coordonnées clients</h2>
-        <form action="index.php?action=update&id=<?= htmlspecialchars($client['id']) ?>" method="POST">
+        <form action="index.php?action=update&id=<?= htmlspecialchars($client['id_client']) ?>" method="POST">
 
-            <input type="hidden" name="id" value="<?= htmlspecialchars($client['id']) ?>">
+            <input type="hidden" name="id" value="<?= htmlspecialchars($client['id_client']) ?>">
             
         <div class="mb-3">
             <label for="nom" class="form-label">Nom :</label>
@@ -30,11 +30,6 @@
         <div class="mb-3">
             <label for="adresse" class="form-label">Adresse :</label>
             <input type="text" class="form-control" id="adresse" name="adresse" value="<?= htmlspecialchars($client['adresse']) ?>" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="solde" class="form-label">Solde :</label>
-            <input type="number" class="form-control" id="solde" name="solde" value="<?= htmlspecialchars($client['solde']) ?>" required>
         </div>
 
         <button type="submit" class="btn btn-success">Modifier</button>
