@@ -6,7 +6,7 @@
         <form action="index.php?action=update&id=<?= htmlspecialchars($client['id']) ?>" method="POST">
 
             <input type="hidden" name="id" value="<?= htmlspecialchars($client['id']) ?>">
-        
+            
         <div class="mb-3">
             <label for="nom" class="form-label">Nom :</label>
             <input type="text" class="form-control" id="nom" name="nom" value="<?= htmlspecialchars($client['nom']) ?>" required>
@@ -41,7 +41,8 @@
     </form>
 
 
-        <a href="?id=<?= htmlspecialchars($client['id']) ?>&action=voir" class="btn btn-secondary mt-3">Annuler</a>
+    <!-- NON pour retour a l'acceuil -->
+        <a href="?page=index.php" class="btn btn-secondary mt-3">Annuler</a>
     </div>
 
 

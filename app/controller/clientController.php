@@ -6,7 +6,7 @@ class ClientController
 
     public function __construct() {
         require_once __DIR__ . "/../model/client.php";
-        $this->clientModel = new Client();
+        $this->clientModel = new Client(); // verifier la class
     }
 
     public function newClient()
@@ -25,7 +25,7 @@ class ClientController
         require_once __DIR__ . '/../views/view-client.php';
     }
 
-    public function modifyClient($id)
+    public function modifyClient($id) // a verifier le nom
     {
         $client = $this->clientModel->getClient($id);
         require_once __DIR__ . '/../views/modif-client.php';
@@ -34,7 +34,7 @@ class ClientController
     public function deleteClient($id)
     {
         $this->clientModel->deleteClient($id);
-        header('Location: index.php');
+        header('Location: index.php?action=liste-client'); // Redirige vers la liste des clients
         exit;
     }
 

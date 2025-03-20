@@ -9,14 +9,15 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="?">Gestionnaire bancaire</a>
+            <a class="navbar-brand" href="?page=index.php">Gestionnaire bancaire</a>
             <div class="" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                 
                     <li class="nav-item">
-                        <a class="nav-link" href="?">Accueil</a>
+                        <a class="nav-link" href="?page=nvx-client">➕ Nouveau Client</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?page=new-task">➕ Nouvelle Tâche</a>
+                        <a class="nav-link" href="?page=nvx-compte">➕ Nouveau Compte</a>
                     </li>
                     <li class="nav-item">
                         <?php if(isset($_SESSION['username'])): ?>

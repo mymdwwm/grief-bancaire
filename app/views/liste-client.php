@@ -26,7 +26,7 @@
                     <td><?= htmlspecialchars($client['telephone']) ?></td>
                     <td><?= htmlspecialchars($client['adresse']) ?></td>
                     <td>
-                        <a href="?id=<?= $client['id'] ?>&action=voir" class="">Voir</a>
+                    <a href="index.php?id=<?= htmlspecialchars($client['id'], ENT_QUOTES, 'UTF-8') ?>&action=voir" class="btn btn-primary">Voir</a>
                         <a href="?id=<?= $client['id'] ?>&action=modifier" class="">Modifier</a>
                         <a href="?id=<?= $client['id'] ?>&action=supprimer" 
                            class=""
