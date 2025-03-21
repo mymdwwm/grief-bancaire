@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des tâches</title>
+    <title>Gestion Bancaire</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
@@ -17,7 +17,8 @@
                         <a class="nav-link" href="?page=liste-client">Liste des Clients</a>
                     </li>
                     <li role="presentation" class="">
-                        <a class="nav-link" href="?page=liste-compte">Liste des Comptes</a>
+                    <a class="nav-link" href="index.php?action=liste-compte">Liste des Comptes</a>
+
                     </li>
                     <li role="presentation" class="">
                         <a class="nav-link" href="?page=liste-contrat">Liste des Contrats</a>

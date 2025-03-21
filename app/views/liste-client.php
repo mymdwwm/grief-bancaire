@@ -20,10 +20,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1): ?>
 <?php if (!empty($clients)): ?>
     <div class="container mt-6">
         <h2 class="mb-4">Liste des clients</h2>
-        <a href="index.php?action=ajouter-client" class="btn btn-success">Ajouter un client</a>
-        <a href="index.php?action=ajouter-compte" class="btn btn-success">Ajouter un compte</a>
-        <a href="index.php?action=ajouter-contrat" class="btn btn-success">Ajouter un contrat</a>
-
+        <?php require_once __DIR__ . '/templates/lien.php' ?>
         <table class="table table-hover table-bordered">
             <thead class="table-dark">
                 <tr>

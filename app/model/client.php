@@ -58,7 +58,7 @@ class Client{
     public function update( $id_client,string $nom, string $prenom, string $email_client, string $telephone, string $adresse) 
     {           
         
-        // couleur de l'update ????
+        
         $stmt = $this->pdo->prepare("UPDATE client 
                     SET nom = :nom, prenom = :prenom, email_client = :email_client, telephone = :telephone, adresse = :adresse 
                     WHERE id_client = :id_client");

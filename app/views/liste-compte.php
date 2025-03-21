@@ -1,36 +1,49 @@
 <?php require_once __DIR__ . '/templates/header.php'; ?>
 
+<?php
+require_once __DIR__ . '/../model/compte.php'; // Vérifie que le modèle est bien inclus
+// echo "📂 Fichier compte.php bien chargé !<br>"; // Debugging
 
-<?php if (!empty($clients)): ?>
+?>
+
+
+<?php if (isset($_SESSION['message'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['message']; unset($_SESSION['message']); ?>
+    </div>
+<?php endif; ?>
+
+<?php if (!empty($comptes)): ?>
     <div class="container mt-6">
         <h2 class="mb-4">Liste des Comptes</h2>
-        <a href="index.php?action=ajouter-client" class="btn btn-success">Ajouter un client</a>
+       
+        <?php require_once __DIR__ . '/templates/lien.php' ?>
 
         <table class="table table-hover table-bordered">
             <thead class="table-dark">
                 <tr>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Email</th>
-                    <th>Telephone</th>
-                    <th>Adresse</th>
+                    <th>N° Compte</th>
+                    <th>RIB</th>
+                    <th>Type</th>
+                    <th>Solde</th>
+                    <th>Client</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($clients as $client): ?>
+                
+                <?php foreach ($comptes as $compte): ?>
                     <tr>
 
-                        <td><?= htmlspecialchars($client['nom']) ?></td>
-                        <td><?= htmlspecialchars($client['prenom']) ?></td>
-                        <td><?= htmlspecialchars($client['email_client']) ?></td>
-                        <td><?= htmlspecialchars($client['telephone']) ?></td>
-                        <td><?= htmlspecialchars($client['adresse']) ?></td>
+                        <td><?= htmlspecialchars($compte['id_compte']) ?></td>
+                        <td><?= htmlspecialchars($compte['rib']) ?></td>
+                        <td><?= htmlspecialchars($compte['type_compte']) ?></td>
+                        <td><?= htmlspecialchars($compte['solde_compte']) ?></td>
+                        <td><?= htmlspecialchars($compte['id_client']) ?></td>
                         <td>
-                            <a href="index.php?id=<?= htmlspecialchars($client['id_client']) ?>&action=voir"
+                            <a href="index.php?id=<?= htmlspecialchars($compte['id_compte']) ?>&action=voir"
                                 class="btn btn-info btn-sm">Voir</a>
-                            <a href="index.php?id=<?= htmlspecialchars($client['id_client']) ?>&action=modifier" class="btn btn-warning btn-sm">Modifier</a>
-                            <a href="index.php?id=<?= htmlspecialchars($client['id_client']) ?>&action=supprimer" class="btn btn-danger btn-sm"
+                            <a href="index.php?id=<?= htmlspecialchars($compte['id_compte']) ?>&action=supprimer" class="btn btn-danger btn-sm"
                                 onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?')">
                                 Supprimer
                             </a>
@@ -41,7 +54,7 @@
         </table>
     </div>
 <?php else: ?>
-    <p style="text-align: center;">Aucun client trouvée.</p>
+    <p style="text-align: center;">Aucun compte trouvée.</p>
 <?php endif; ?>
 
 
