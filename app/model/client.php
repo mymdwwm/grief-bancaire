@@ -55,7 +55,7 @@ class Client{
     }
 
 
-    public function update( string $nom, string $prenom, string $email_client, string $telephone, string $adresse) 
+    public function update( $id_client,string $nom, string $prenom, string $email_client, string $telephone, string $adresse) 
     {           
         
         // couleur de l'update ????
@@ -67,6 +67,8 @@ class Client{
         $stmt->bindParam(':email_client', $email_client);
         $stmt->bindParam(':telephone', $telephone);
         $stmt->bindParam(':adresse', $adresse);
+        $stmt->bindParam(':id_client', $id_client);
+
         // $stmt->bindParam(':id_client', $id);
         
         return $stmt->execute();

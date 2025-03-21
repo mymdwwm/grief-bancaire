@@ -1,33 +1,14 @@
 <?php require_once __DIR__ . '/templates/header.php'; ?>
 
 
-<?php
-// affiche un message à l'ajout d'un client 
-if (isset($_GET['success']) && $_GET['success'] == 1): ?>
-    <div class="alert alert-success">
-        Le client <?= htmlspecialchars($_GET['nom']) ?> <?= htmlspecialchars($_GET['prenom']) ?> a bien été ajouté.
-    </div>
-
-    if (isset($_GET['update']) && $_GET['update'] == 1): ?>
-    <div class="alert alert-info">
-        Le client <?= htmlspecialchars($_GET['nom']) ?> <?= htmlspecialchars($_GET['prenom']) ?> a bien été modifié.
-    </div>
-
-<?php endif; ?>
-
-
-
 <?php if (!empty($clients)): ?>
     <div class="container mt-6">
-        <h2 class="mb-4">Liste des clients</h2>
+        <h2 class="mb-4">Liste des Comptes</h2>
         <a href="index.php?action=ajouter-client" class="btn btn-success">Ajouter un client</a>
-        <a href="index.php?action=ajouter-compte" class="btn btn-success">Ajouter un compte</a>
-        <a href="index.php?action=ajouter-contrat" class="btn btn-success">Ajouter un contrat</a>
 
         <table class="table table-hover table-bordered">
             <thead class="table-dark">
                 <tr>
-                <th>N°</th>
                     <th>Nom</th>
                     <th>Prenom</th>
                     <th>Email</th>
@@ -39,7 +20,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1): ?>
             <tbody>
                 <?php foreach ($clients as $client): ?>
                     <tr>
-                    <td><?= htmlspecialchars($client['id_client']) ?></td>
+
                         <td><?= htmlspecialchars($client['nom']) ?></td>
                         <td><?= htmlspecialchars($client['prenom']) ?></td>
                         <td><?= htmlspecialchars($client['email_client']) ?></td>

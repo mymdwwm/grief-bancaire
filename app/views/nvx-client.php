@@ -2,7 +2,7 @@
 
 <div class="container mt-5">
     <h2>Ajoutez un nouveau client</h2>
-    <form action="index.php?action=add_client" method="POST">
+    <form action="index.php?action=save-client" method="POST">
 
         <div class="mb-3">
             <label for="nom" class="form-label">Nom :</label>

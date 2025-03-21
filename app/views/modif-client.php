@@ -5,7 +5,7 @@
         <h2>Modifier le coordonnées clients</h2>
         <form action="index.php?action=update&id=<?= htmlspecialchars($client['id_client']) ?>" method="POST">
 
-            <input type="hidden" name="id" value="<?= htmlspecialchars($client['id_client']) ?>">
+            <input type="hidden" name="id_client" value="<?= htmlspecialchars($client['id_client']) ?>">
             
         <div class="mb-3">
             <label for="nom" class="form-label">Nom :</label>

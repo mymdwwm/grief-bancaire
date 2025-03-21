@@ -11,15 +11,18 @@
         <div class="container">
             <a class="navbar-brand" href="?page=index.php">Gestionnaire bancaire</a>
             <div class="" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="nav navbar-nav nav-tabs">
                  
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=nvx-client">➕ Nouveau Client</a>
+                    <li role="presentation" class="active">
+                        <a class="nav-link" href="?page=liste-client">Liste des Clients</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?page=nvx-compte">➕ Nouveau Compte</a>
+                    <li role="presentation" class="">
+                        <a class="nav-link" href="?page=liste-compte">Liste des Comptes</a>
                     </li>
-                    <li class="nav-item">
+                    <li role="presentation" class="">
+                        <a class="nav-link" href="?page=liste-contrat">Liste des Contrats</a>
+                    </li>
+                    <li role="presentation" class="">
                         <?php if(isset($_SESSION['username'])): ?>
                             <a class="nav-link" href="?action=disconnect">🔐 Déconnexion</a>
                         <?php else: ?>
