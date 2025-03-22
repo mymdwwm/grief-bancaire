@@ -10,15 +10,15 @@
     <p><strong>Email :</strong> <?= htmlspecialchars($contratWithClient['email_client']) ?></p>
     <p><strong>Téléphone :</strong> <?= htmlspecialchars($contratWithClient['telephone']) ?></p>
     <p><strong>Adresse :</strong> <?= htmlspecialchars($contratWithClient['adresse']) ?></p>
-
+<br>
     <!-- Informations du Contrat -->
     <h3>Informations du Contrat</h3>
     <p><strong>Type de Contrat :</strong> <?= htmlspecialchars($contratWithClient['type_contrat']) ?></p>
     <p><strong>Montant :</strong> <?= htmlspecialchars($contratWithClient['montant']) ?> €</p>
     <p><strong>Durée :</strong> <?= htmlspecialchars($contratWithClient['duree']) ?> mois</p>
-   
-
+<br>
     <a href="index.php?action=liste-contrats" class="btn btn-secondary">Retour à la liste des contrats</a>
 </div>
-
+<br>
 <?php require_once __DIR__ . '/templates/footer.php'; ?>
+

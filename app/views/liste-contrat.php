@@ -31,7 +31,6 @@
                         <td>
                             <a href="index.php?id=<?= htmlspecialchars($contrat['id_contrat']) ?>&action=voir-contrat"
                                 class="btn btn-info btn-sl">Voir</a>
-                            </a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

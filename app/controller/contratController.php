@@ -75,6 +75,13 @@ class ContratController {
 
     public function viewContrat($id_contrat) {
         $contratWithClient = $this->contratModel->getContratWithClient($id_contrat);
+
+        // verif 
+        if (!$contratWithClient) {
+            echo "<p style='color: red; text-align: center;'>Contrat non trouvé.</p>";
+            return;
+        }
+    
         require_once __DIR__ . '/../views/view-contrat.php';
     }
     
