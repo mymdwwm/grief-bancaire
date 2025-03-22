@@ -8,10 +8,21 @@ if (isset($_GET['success']) && $_GET['success'] == 1): ?>
         Le client <?= htmlspecialchars($_GET['nom']) ?> <?= htmlspecialchars($_GET['prenom']) ?> a bien été ajouté.
     </div>
 
+
     if (isset($_GET['update']) && $_GET['update'] == 1): ?>
     <div class="alert alert-info">
         Le client <?= htmlspecialchars($_GET['nom']) ?> <?= htmlspecialchars($_GET['prenom']) ?> a bien été modifié.
     </div>
+
+
+    
+<?php if (isset($_SESSION['message'])) {
+    echo '<div class="alert alert-success">' . $_SESSION['message'] . '</div>';
+    unset($_SESSION['message']);
+}
+?>
+
+    
 
 <?php endif; ?>
 
@@ -21,6 +32,8 @@ if (isset($_GET['success']) && $_GET['success'] == 1): ?>
     <div class="container mt-6">
         <h2 class="mb-4">Liste des clients</h2>
         <?php require_once __DIR__ . '/templates/lien.php' ?>
+        <hr>
+        <p><strong>Total de clients :</strong> <?= htmlspecialchars($totalClients); ?></p>
         <table class="table table-hover table-bordered">
             <thead class="table-dark">
                 <tr>
@@ -47,7 +60,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1): ?>
                                 class="btn btn-info btn-sm">Voir</a>
                             <a href="index.php?id=<?= htmlspecialchars($client['id_client']) ?>&action=modifier" class="btn btn-warning btn-sm">Modifier</a>
                             <a href="index.php?id=<?= htmlspecialchars($client['id_client']) ?>&action=supprimer" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?')">
+                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client et ses comptes associés ?')">
                                 Supprimer
                             </a>
                         </td>

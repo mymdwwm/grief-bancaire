@@ -21,7 +21,7 @@
 
                     </li>
                     <li role="presentation" class="">
-                        <a class="nav-link" href="?page=liste-contrat">Liste des Contrats</a>
+                    <a href="index.php?action=liste-contrats" class="nav-link">Liste des contrats</a>
                     </li>
                     <li role="presentation" class="">
                         <?php if(isset($_SESSION['username'])): ?>

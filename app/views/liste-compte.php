@@ -9,16 +9,18 @@ require_once __DIR__ . '/../model/compte.php'; // Vérifie que le modèle est bi
 
 <?php if (isset($_SESSION['message'])): ?>
     <div class="alert alert-success">
-        <?= $_SESSION['message']; unset($_SESSION['message']); ?>
+        <?= $_SESSION['message'];
+        unset($_SESSION['message']); ?>
     </div>
 <?php endif; ?>
 
 <?php if (!empty($comptes)): ?>
     <div class="container mt-6">
         <h2 class="mb-4">Liste des Comptes</h2>
-       
-        <?php require_once __DIR__ . '/templates/lien.php' ?>
 
+        <?php require_once __DIR__ . '/templates/lien.php' ?>
+        <hr>
+        <p><strong>Total de comptes :</strong> <?= htmlspecialchars($totalComptes); ?></p>
         <table class="table table-hover table-bordered">
             <thead class="table-dark">
                 <tr>
@@ -31,7 +33,7 @@ require_once __DIR__ . '/../model/compte.php'; // Vérifie que le modèle est bi
                 </tr>
             </thead>
             <tbody>
-                
+
                 <?php foreach ($comptes as $compte): ?>
                     <tr>
 
@@ -43,8 +45,9 @@ require_once __DIR__ . '/../model/compte.php'; // Vérifie que le modèle est bi
                         <td>
                             <a href="index.php?id=<?= htmlspecialchars($compte['id_compte']) ?>&action=voir"
                                 class="btn btn-info btn-sm">Voir</a>
-                            <a href="index.php?id=<?= htmlspecialchars($compte['id_compte']) ?>&action=supprimer" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client ?')">
+                            <a href="index.php?id=<?= htmlspecialchars($compte['id_compte']) ?>&action=supprimer-compte"
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce compte ?')">
                                 Supprimer
                             </a>
                         </td>

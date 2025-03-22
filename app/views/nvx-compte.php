@@ -3,7 +3,7 @@
 
 <div class="container mt-4">
     <h2>Ajouter un Compte</h2>
-    <form action="index.php?action=new-compte" method="post">
+    <form action="index.php?action=add-compte" method="POST">
         <div class="mb-3">
             <label for="rib" class="form-label">RIB :</label>
             <input type="text" class="form-control" name="rib" required>
@@ -19,10 +19,18 @@
             <label for="solde_compte" class="form-label">Solde :</label>
             <input type="number" class="form-control" name="solde_compte" step="0.01" required>
         </div>
-        <div class="mb-3">
-            <label for="id_client" class="form-label">ID Client :</label>
-            <input type="number" class="form-control" name="id_client" required>
-        </div>
+        <label for="id_client">Client :</label>
+
+        <?php var_dump($clients); ?>
+        <select name="id_client" required>
+    <option value="">-- Sélectionner un client --</option>
+    <?php foreach ($clients as $client): ?>
+        <?php var_dump($client); ?>
+        <option value="<?= $client['id_client']; ?>">
+            <?= htmlspecialchars($client['nom']) . " " . htmlspecialchars($client['prenom']); ?>
+        </option>
+    <?php endforeach; ?>
+</select>
         <button type="submit" class="btn btn-success">Ajouter</button>
     </form>
 </div>

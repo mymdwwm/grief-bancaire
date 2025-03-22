@@ -17,6 +17,7 @@ class CompteController
     public function listCompte()
     {
         $comptes = $this->compteModel->getAllComptes();
+        $totalComptes = $this->compteModel->getTotalComptes();
         //var_dump($comptes); // 🔍 Vérifier si les données existent ici
     require_once __DIR__ . '/../views/liste-compte.php';
     }
@@ -32,10 +33,20 @@ class CompteController
 
 
     public function deleteCompte($id_compte)
-    {
-        $this->compteModel->deleteCompte($id_compte);
-        header('Location: index.php?action=liste-compte'); // Redirige vers la liste des comptes
-        exit;
+    { // Récupère l'ID du client associé au compte
+        $id_client = $this->compteModel->getClientByCompte($id_compte);
+        // Supprimer le compte
+    if ($this->compteModel->deleteCompte($id_compte)) {
+        // Stocker un message de confirmation en session
+        session_start();
+        $_SESSION['message'] = "Le compte a été supprimé avec succès.";
+
+        // Rediriger vers la liste des comptes ou des clients
+        header("Location: index.php?action=liste-compte&success=1&id_client=" . urlencode($id_client));
+        exit();
+    } else {
+        echo "Erreur lors de la suppression du compte.";
+    }
     }
 
     // formulaire d'ajout du clients
@@ -49,13 +60,13 @@ class CompteController
 {
     // Vérifiez si le compte existe déjà
     if (!$this->compteModel->compteExists($rib)) {
-        $this->compteModel->newCompte($rib, $type_compte, $solde_compte, $id_client);
+        $id_compte=$this->compteModel->newCompte($rib, $type_compte, $solde_compte, $id_client);
 
         // Stocker un message de confirmation en session
         session_start();
         $_SESSION['message'] = "Le compte a bien été ajouté.";
 
-        header("Location: index.php?action=liste-compte&success=1");
+        header("Location: index.php?action=voir-compte&id= success=1" . $id_compte);
         exit();
     } else {
         echo "Le compte existe déjà.";
