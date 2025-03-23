@@ -1,6 +1,4 @@
 <?php require_once __DIR__ . '/templates/header.php'; ?>
-
-
 <div class="d-flex justify-content-center align-items-center vh-100 bg-light">
 
     <div class="card p-4 shadow-lg" style="width: 400px;">
@@ -15,7 +13,7 @@
 
         <form action="index.php?action=connexion" method="POST">
             <div class="mb-3">
-                <label for="username" class="form-label">Email de connexion :</label>
+                <label for="username" class="form-label">Nom d'utilisateur :</label>
                 <input type="text" id="username" name="username" class="form-control" required>
             </div>
 
@@ -29,6 +27,4 @@
     </div>
 
 </div>
-
-
 <?php require_once __DIR__ . '/templates/footer.php'; ?>

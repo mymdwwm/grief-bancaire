@@ -1,47 +1,64 @@
 <?php
-
-class adminController 
+class AdminController 
 {
     public function index() 
     {
+        
         require_once __DIR__ . '/../views/login.php';
     }
 
     public function connect($username, $password)
     {
         session_start();
-
-        // HASHAGE DU MOT DE PASSE à stocker 
-        // Un vrai projet récupère le mot de passe par la saisie de l'utilisateur 
-        $hashedPassword = hash('1234', PASSWORD_BCRYPT);
-
-        // stockage temporaire
+        
         $adminCredentials = [
             'username' => 'administrateur',
-            'password' => $hashedPassword // utilisation du mdp hashé
+            'password' => '1234' // Mot de passe temporaire
         ];
-
-// Vérification des identifiants d'administrateur
-        if ($username == $adminCredentials['username'] && password_verify($password, $adminCredentials['password'])) {
-            $_SESSION['username'] = $username;
+    
+        // Vérifier les identifiants
+        if ($username === $adminCredentials['username'] && $password === $adminCredentials['password']) {
+            $_SESSION['username'] = $username;  
             $_SESSION['message_flash'] = 'La connexion est un succès';
-            header('Location: index.php');
+    
+            header('Location: index.php'); // Envoi vers l'accueil
             exit;
         } else {
-            $_SESSION['error_message'] = 'Les informations de connexion sont erronnées.';
-
-            require_once __DIR__ . '/../views/login.php';
+            $_SESSION['error_message'] = 'Identifiants incorrects.';
+            header('Location: index.php?action=login');
+            exit;
         }
     }
 
     public function disconnect()
     {
         session_start();
-        session_destroy();
-        unset($_SESSION['username']);
-        header('Location: index.php');
+        $_SESSION = []; // Vide toutes les variables de session
+        session_destroy(); // Détruit la session côté serveur
+        setcookie(session_name(), '', time() - 3600, '/'); // Supprime le cookie de session
+    
+        header('Location: index.php?action=login'); // Redirection vers login après déconnexion
+        exit;
     }
+    
 }
+
+
+
+        /*
+        if ($username == $adminCredentials['username'] && hash('sha256', $password) == hash('sha256', '1234')) {
+            $_SESSION['username'] = $username;
+            $_SESSION['message_flash'] = 'La connexion est un succès';
+            header('Location: index.php');
+        } else {
+            $_SESSION['error_message'] = 'Les informations de connexion sont erronées.';
+        header('Location: index.php?action=login');
+        exit;
+        }
+        */
+
+
+
 
 
 
