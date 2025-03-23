@@ -13,14 +13,16 @@ class AdminController
         
         $adminCredentials = [
             'username' => 'administrateur',
-            'password' => '1234' // Mot de passe temporaire
+            'password' => password_hash('1234', PASSWORD_BCRYPT)
+            //'password' => '1234' // Mot de passe temporaire
         ];
     
         // Vérifier les identifiants
-        if ($username === $adminCredentials['username'] && $password === $adminCredentials['password']) {
+        if ($username === $adminCredentials['username'] && password_verify($password, $adminCredentials['password'])) {
             $_SESSION['username'] = $username;  
             $_SESSION['message_flash'] = 'La connexion est un succès';
-    
+            $_SESSION['loggedin'] = true;  // Ajout d'un flag de connexion
+        
             header('Location: index.php'); // Envoi vers l'accueil
             exit;
         } else {
@@ -33,10 +35,8 @@ class AdminController
     public function disconnect()
     {
         session_start();
-        $_SESSION = []; // Vide toutes les variables de session
         session_destroy(); // Détruit la session côté serveur
-        setcookie(session_name(), '', time() - 3600, '/'); // Supprime le cookie de session
-    
+        session_unset();  // Supprime toutes les variables de session
         header('Location: index.php?action=login'); // Redirection vers login après déconnexion
         exit;
     }

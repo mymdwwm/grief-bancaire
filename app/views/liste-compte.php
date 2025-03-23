@@ -1,6 +1,7 @@
 <?php
-session_start();
-if (!isset($_SESSION['admin'])) {
+
+// Vérifie si l'utilisateur est connecté
+if (!isset($_SESSION['username'])) {
     header('Location: index.php?action=login');
     exit;
 }
